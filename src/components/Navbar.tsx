@@ -1,6 +1,7 @@
 'use client';
 
 import { useState, useEffect } from 'react';
+import { usePathname, useRouter } from 'next/navigation';
 import { motion, AnimatePresence } from 'framer-motion';
 import { Menu, X, Sun, Moon, Shield } from 'lucide-react';
 import { useTheme } from './ThemeProvider';
@@ -21,6 +22,8 @@ export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const { theme, toggleTheme } = useTheme();
+  const pathname = usePathname();
+  const router = useRouter();
 
   useEffect(() => {
     const handleScroll = () => {
@@ -47,9 +50,14 @@ export default function Navbar() {
 
   const handleClick = (href: string) => {
     setIsOpen(false);
-    const el = document.querySelector(href);
-    if (el) {
-      el.scrollIntoView({ behavior: 'smooth' });
+    if (pathname !== '/') {
+      // Navigate to homepage with the hash
+      router.push('/' + href);
+    } else {
+      const el = document.querySelector(href);
+      if (el) {
+        el.scrollIntoView({ behavior: 'smooth' });
+      }
     }
   };
 
@@ -81,10 +89,14 @@ export default function Navbar() {
         >
           {/* Logo */}
           <a
-            href="#"
+            href="/"
             onClick={(e) => {
               e.preventDefault();
-              window.scrollTo({ top: 0, behavior: 'smooth' });
+              if (pathname !== '/') {
+                router.push('/');
+              } else {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+              }
             }}
             style={{
               display: 'flex',
