@@ -2,10 +2,9 @@
 
 import { motion } from 'framer-motion';
 import { ExternalLink, Tag } from 'lucide-react';
-import { FaGithub } from 'react-icons/fa';
 import SectionHeading from '../ui/SectionHeading';
 
-const projects = [
+const projects: { title: string; description: string; tags: string[]; category: string; links: { demo?: string; github?: string } }[] = [
   {
     title: 'Hybrid Intrusion Detection System',
     description:
@@ -128,7 +127,6 @@ export default function ProjectsSection() {
                       fontSize: '0.75rem',
                     }}
                   >
-                    <FaGithub size={14} />
                     Code
                   </a>
                 )}

@@ -1,5 +1,6 @@
 'use client';
 
+import React from 'react';
 import { useParams, useRouter } from 'next/navigation';
 import { motion } from 'framer-motion';
 import { ArrowLeft, Calendar, Clock, Tag } from 'lucide-react';
@@ -51,7 +52,7 @@ export default function BlogPostPage() {
   // Simple markdown-like renderer
   const renderContent = (content: string) => {
     const lines = content.trim().split('\n');
-    const elements: JSX.Element[] = [];
+    const elements: React.ReactNode[] = [];
     let i = 0;
     let key = 0;
 
