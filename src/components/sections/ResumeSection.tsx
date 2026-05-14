@@ -10,7 +10,7 @@ export default function ResumeSection() {
       <div className="container-custom">
         <SectionHeading
           title="Resume"
-          subtitle="Download my ATS-optimized resume for a comprehensive overview of my qualifications."
+          subtitle="Download my resume for a comprehensive overview of my qualifications."
         />
 
         <motion.div
@@ -168,7 +168,7 @@ export default function ResumeSection() {
             }}
           >
             <FileText size={12} />
-            ATS-optimized format • PDF
+            Professional format • PDF
           </p>
         </motion.div>
       </div>

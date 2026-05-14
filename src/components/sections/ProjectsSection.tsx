@@ -16,66 +16,6 @@ const projects = [
       demo: 'https://ieeexplore.ieee.org/document/11389995/',
     },
   },
-  {
-    title: 'Vulnerability Assessment Automation',
-    description:
-      'Custom scripts and tools to automate vulnerability scanning, report generation, and remediation tracking for enterprise VAPT engagements.',
-    tags: ['Python', 'Bash', 'Nessus API', 'Automation'],
-    category: 'Automation',
-    links: {
-      github: '#',
-    },
-  },
-  {
-    title: 'Malware Traffic Analysis',
-    description:
-      'Network traffic analysis toolkit for identifying and classifying malicious traffic patterns, command-and-control communications, and data exfiltration attempts.',
-    tags: ['Wireshark', 'Python', 'Network Analysis', 'PCAP'],
-    category: 'Analysis',
-    links: {
-      github: '#',
-    },
-  },
-  {
-    title: 'SOC Monitoring Dashboard',
-    description:
-      'Custom security operations center dashboard for real-time monitoring of security events, alert correlation, and incident tracking.',
-    tags: ['SIEM', 'Dashboard', 'Python', 'Log Analysis'],
-    category: 'SOC',
-    links: {
-      github: '#',
-    },
-  },
-  {
-    title: 'OSINT Automation Framework',
-    description:
-      'Automated open-source intelligence gathering framework for reconnaissance and threat intelligence during penetration testing engagements.',
-    tags: ['Python', 'OSINT', 'Recon', 'APIs'],
-    category: 'OSINT',
-    links: {
-      github: '#',
-    },
-  },
-  {
-    title: 'Web Pentesting Reports',
-    description:
-      'Comprehensive web application penetration testing report templates and methodologies following OWASP guidelines and industry best practices.',
-    tags: ['OWASP', 'Web Security', 'Reporting', 'Methodology'],
-    category: 'Web Security',
-    links: {
-      github: '#',
-    },
-  },
-  {
-    title: 'CTF Writeups & Walkthroughs',
-    description:
-      'Collection of Capture The Flag competition writeups, Hack The Box machine solutions, and TryHackMe room walkthroughs.',
-    tags: ['CTF', 'Hack The Box', 'TryHackMe', 'Writeups'],
-    category: 'CTF',
-    links: {
-      github: '#',
-    },
-  },
 ];
 
 export default function ProjectsSection() {
