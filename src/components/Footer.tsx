@@ -1,14 +1,9 @@
 'use client';
 
-import { FaGithub, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
-import { SiTryhackme, SiHackthebox } from 'react-icons/si';
+import { FaLinkedinIn } from 'react-icons/fa';
 
 const socials = [
-  { icon: FaGithub, href: 'https://github.com/', label: 'GitHub' },
   { icon: FaLinkedinIn, href: 'https://www.linkedin.com/in/akshat-bauskar-990356163/', label: 'LinkedIn' },
-  { icon: FaYoutube, href: 'https://youtube.com/', label: 'YouTube' },
-  { icon: SiTryhackme, href: 'https://tryhackme.com/', label: 'TryHackMe' },
-  { icon: SiHackthebox, href: 'https://hackthebox.com/', label: 'Hack The Box' },
 ];
 
 export default function Footer() {

@@ -3,8 +3,7 @@
 import { useState, FormEvent } from 'react';
 import { motion } from 'framer-motion';
 import { Mail, Send, CheckCircle } from 'lucide-react';
-import { FaGithub, FaLinkedinIn, FaYoutube } from 'react-icons/fa';
-import { SiTryhackme, SiHackthebox } from 'react-icons/si';
+import { FaLinkedinIn } from 'react-icons/fa';
 import SectionHeading from '../ui/SectionHeading';
 
 const contactLinks = [
@@ -19,30 +18,6 @@ const contactLinks = [
     label: 'LinkedIn',
     value: 'Akshat Bauskar',
     href: 'https://www.linkedin.com/in/akshat-bauskar-990356163/',
-  },
-  {
-    icon: FaGithub,
-    label: 'GitHub',
-    value: 'GitHub Profile',
-    href: 'https://github.com/',
-  },
-  {
-    icon: FaYoutube,
-    label: 'YouTube',
-    value: 'YouTube Channel',
-    href: 'https://youtube.com/',
-  },
-  {
-    icon: SiTryhackme,
-    label: 'TryHackMe',
-    value: 'TryHackMe Profile',
-    href: 'https://tryhackme.com/',
-  },
-  {
-    icon: SiHackthebox,
-    label: 'Hack The Box',
-    value: 'HTB Profile',
-    href: 'https://hackthebox.com/',
   },
 ];
 
