@@ -1,31 +1,65 @@
 'use client';
 
 import { motion } from 'framer-motion';
-import { PenLine, BookOpen, Search } from 'lucide-react';
+import { Calendar, Clock, ArrowRight, PenLine } from 'lucide-react';
+import { useRouter } from 'next/navigation';
 import SectionHeading from '../ui/SectionHeading';
-
-const blogCategories = [
-  {
-    title: 'Pentesting Writeups',
-    description: 'Detailed walkthroughs of penetration testing methodologies, techniques, and real-world findings.',
-    icon: PenLine,
-    count: 'Coming Soon',
-  },
-  {
-    title: 'HTB & THM Walkthroughs',
-    description: 'Hack The Box machine solutions and TryHackMe room walkthroughs with step-by-step explanations.',
-    icon: Search,
-    count: 'Coming Soon',
-  },
-  {
-    title: 'Security Research',
-    description: 'In-depth analysis of vulnerabilities, OWASP findings, Snort and IDS research, and emerging threats.',
-    icon: BookOpen,
-    count: 'Coming Soon',
-  },
-];
+import { blogPosts } from '@/data/blogPosts';
 
 export default function BlogSection() {
+  const router = useRouter();
+
+  // If no posts yet, show a "coming soon" message
+  if (blogPosts.length === 0) {
+    return (
+      <section id="blog" className="section-padding">
+        <div className="container-custom">
+          <SectionHeading
+            title="Blog & Writeups"
+            subtitle="Sharing knowledge on cybersecurity, pentesting techniques, and security research."
+          />
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            viewport={{ once: true }}
+            transition={{ duration: 0.5 }}
+            className="card"
+            style={{
+              maxWidth: '500px',
+              margin: '0 auto',
+              padding: '3rem 2rem',
+              textAlign: 'center',
+            }}
+          >
+            <PenLine
+              size={40}
+              style={{ color: 'var(--accent-green)', margin: '0 auto 1rem' }}
+            />
+            <h3
+              style={{
+                fontSize: '1.125rem',
+                fontWeight: 600,
+                color: 'var(--text-primary)',
+                marginBottom: '0.5rem',
+              }}
+            >
+              Coming Soon
+            </h3>
+            <p
+              style={{
+                fontSize: '0.875rem',
+                color: 'var(--text-secondary)',
+                lineHeight: 1.7,
+              }}
+            >
+              Blog posts and writeups are being prepared. Stay tuned for regular cybersecurity content.
+            </p>
+          </motion.div>
+        </div>
+      </section>
+    );
+  }
+
   return (
     <section id="blog" className="section-padding">
       <div className="container-custom">
@@ -37,98 +71,118 @@ export default function BlogSection() {
         <div
           style={{
             display: 'grid',
-            gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+            gridTemplateColumns: 'repeat(auto-fit, minmax(320px, 1fr))',
             gap: '1.5rem',
             maxWidth: '1000px',
             margin: '0 auto',
           }}
         >
-          {blogCategories.map((cat, i) => (
-            <motion.div
-              key={cat.title}
+          {blogPosts.map((post, i) => (
+            <motion.article
+              key={post.slug}
               initial={{ opacity: 0, y: 30 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true, margin: '-50px' }}
-              transition={{ duration: 0.4, delay: i * 0.1 }}
+              transition={{ duration: 0.4, delay: i * 0.08 }}
               className="card"
+              onClick={() => router.push(`/blog/${post.slug}`)}
               style={{
-                padding: '1.75rem',
-                textAlign: 'center',
+                padding: '1.5rem',
+                cursor: 'pointer',
                 display: 'flex',
                 flexDirection: 'column',
-                alignItems: 'center',
               }}
             >
-              <div
+              {/* Category */}
+              <span
                 style={{
-                  width: '56px',
-                  height: '56px',
-                  borderRadius: '14px',
-                  background: 'var(--bg-tertiary)',
-                  display: 'flex',
-                  alignItems: 'center',
-                  justifyContent: 'center',
-                  marginBottom: '1rem',
+                  fontSize: '0.6875rem',
+                  fontWeight: 600,
+                  color: 'var(--accent-green)',
+                  textTransform: 'uppercase',
+                  letterSpacing: '0.05em',
+                  marginBottom: '0.75rem',
                 }}
               >
-                <cat.icon size={24} style={{ color: 'var(--accent-green)' }} />
-              </div>
+                {post.category}
+              </span>
 
+              {/* Title */}
               <h3
                 style={{
-                  fontSize: '1rem',
+                  fontSize: '1.0625rem',
                   fontWeight: 600,
                   color: 'var(--text-primary)',
                   marginBottom: '0.5rem',
+                  lineHeight: 1.4,
                 }}
               >
-                {cat.title}
+                {post.title}
               </h3>
 
+              {/* Summary */}
               <p
                 style={{
                   fontSize: '0.8125rem',
                   color: 'var(--text-secondary)',
                   lineHeight: 1.7,
                   marginBottom: '1rem',
+                  flex: 1,
                 }}
               >
-                {cat.description}
+                {post.summary}
               </p>
 
-              <span
+              {/* Meta */}
+              <div
                 style={{
-                  padding: '0.375rem 1rem',
-                  borderRadius: '9999px',
-                  background: 'var(--bg-tertiary)',
-                  border: '1px solid var(--border-color)',
-                  fontSize: '0.75rem',
-                  fontWeight: 500,
-                  color: 'var(--text-muted)',
+                  display: 'flex',
+                  alignItems: 'center',
+                  justifyContent: 'space-between',
+                  paddingTop: '0.75rem',
+                  borderTop: '1px solid var(--border-color)',
                 }}
               >
-                {cat.count}
-              </span>
-            </motion.div>
+                <div
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '1rem',
+                    fontSize: '0.6875rem',
+                    color: 'var(--text-muted)',
+                  }}
+                >
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <Calendar size={11} />
+                    {new Date(post.date).toLocaleDateString('en-US', {
+                      month: 'short',
+                      day: 'numeric',
+                      year: 'numeric',
+                    })}
+                  </span>
+                  <span style={{ display: 'flex', alignItems: 'center', gap: '0.25rem' }}>
+                    <Clock size={11} />
+                    {post.readTime}
+                  </span>
+                </div>
+
+                <span
+                  style={{
+                    display: 'flex',
+                    alignItems: 'center',
+                    gap: '0.25rem',
+                    fontSize: '0.75rem',
+                    fontWeight: 500,
+                    color: 'var(--accent-green)',
+                  }}
+                >
+                  Read
+                  <ArrowRight size={12} />
+                </span>
+              </div>
+            </motion.article>
           ))}
         </div>
-
-        {/* Coming soon note */}
-        <motion.p
-          initial={{ opacity: 0 }}
-          whileInView={{ opacity: 1 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.5, delay: 0.4 }}
-          style={{
-            textAlign: 'center',
-            marginTop: '2rem',
-            fontSize: '0.875rem',
-            color: 'var(--text-muted)',
-            fontStyle: 'italic',
-          }}
-        >
-          Blog posts and writeups are being prepared. Stay tuned for regular cybersecurity content.
-        </motion.p>
       </div>
     </section>
   );
